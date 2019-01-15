@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -24,7 +25,7 @@ public class CreditCardDTO extends PaymentDTO {
     private String cvv;
     @NotNull(message = "Card expiration date is mandatory!")
     @Future(message = "Card expiration date is invalid !")
-    private Date expirationDate;
+    private LocalDate expirationDate;
 
     private String issuer;
 }

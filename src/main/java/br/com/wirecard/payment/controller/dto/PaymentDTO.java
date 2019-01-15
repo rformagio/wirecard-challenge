@@ -32,6 +32,7 @@ public abstract class PaymentDTO implements Serializable {
     private Long clientId;
     @NotNull(message = "Amount is mandatory!")
     private BigDecimal amount;
+    @NotNull
     private final PaymentType type;
     private PaymentStatus status;
     @Valid

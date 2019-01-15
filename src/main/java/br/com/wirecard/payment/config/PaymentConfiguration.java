@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Configuration
 public class PaymentConfiguration {
-
+/*
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
@@ -22,5 +22,5 @@ public class PaymentConfiguration {
         builder.serializerByType(Date.class, new DateWithTimezoneSerializer());
         return builder;
     }
-
+*/
 }

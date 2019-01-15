@@ -3,6 +3,7 @@ package br.com.wirecard.payment.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -16,7 +17,7 @@ public class CreditCard extends Payment {
 
     private String holderName;
     private String cardNumber;
-    private Date expirationDate;
+    private LocalDate expirationDate;
     private String cvv;
     private String issuer;
 }

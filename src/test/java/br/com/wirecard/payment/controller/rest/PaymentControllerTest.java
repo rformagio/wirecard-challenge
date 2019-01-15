@@ -27,18 +27,15 @@ import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.springframework.restdocs.operation.preprocess.Preprocessors.prettyPrint;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
-
+import static br.com.wirecard.payment.TestUtil.*;
 import java.math.BigDecimal;
-import java.util.Date;
+
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(PaymentController.class)
@@ -92,7 +89,7 @@ public class PaymentControllerTest {
         CreditCardDTO creditCardDTO = new CreditCardDTO();
         creditCardDTO.setCvv("4");
         creditCardDTO.setHolderName("Antonio Carlos");
-        creditCardDTO.setExpirationDate(new Date());
+        creditCardDTO.setExpirationDate(parseToLocalDate("2019-01-15"));
         creditCardDTO.setBuyer(buyer1);
         creditCard = creditCardDTO;
         creditCard.setAmount(new BigDecimal(200.00));
@@ -118,17 +115,19 @@ public class PaymentControllerTest {
         creditCardDTO.setCvv("4");
         creditCardDTO.setCardNumber(CREDIT_CARD_AMEX);
         creditCardDTO.setHolderName("Antonio Carlos");
-        creditCardDTO.setExpirationDate(new Date());
+        creditCardDTO.setExpirationDate(parseToLocalDate("2019-01-15"));
         creditCardDTO.setBuyer(buyer1);
         creditCard = creditCardDTO;
         creditCard.setAmount(new BigDecimal(200.00));
+        creditCard.setClientId(1L);
 
-        mvc.perform(post(PaymentEndPoint.PATH_PAYMENT)
-                .contentType(MediaType.APPLICATION_JSON))
+        mvc.perform(post(PaymentEndPoint.PATH_SERVICES + PaymentEndPoint.PATH_PAYMENT)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(toJson(creditCard)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$[0].status", is(PaymentStatus.APPROVED.getDescription())))
-                .andExpect(jsonPath("$[0].type", is(PaymentType.CREDIT_CARD.getDescription())))
-                .andExpect(jsonPath("$[0].issuer",is(Brands.AMERICAN_EXPRESS.name())))
-                .andExpect(jsonPath("$[0].paymentId", is(anyLong())));
+                .andExpect(jsonPath("$.status", is(PaymentStatus.APPROVED.getDescription())))
+                .andExpect(jsonPath("$.type", is(PaymentType.CREDIT_CARD.getDescription())))
+                .andExpect(jsonPath("$.issuer",is(Brands.AMERICAN_EXPRESS.name())))
+                .andExpect(jsonPath("$.paymentId", is(anyLong())));
     }
 }
