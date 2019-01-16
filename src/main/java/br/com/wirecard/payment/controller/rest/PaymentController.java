@@ -1,9 +1,5 @@
 package br.com.wirecard.payment.controller.rest;
 
-import br.com.wirecard.payment.controller.dto.BoletoDTO;
-import br.com.wirecard.payment.controller.dto.BuyerDTO;
-import br.com.wirecard.payment.controller.dto.CreditCardDTO;
-import br.com.wirecard.payment.controller.dto.PaymentDTO;
 import br.com.wirecard.payment.controller.util.Messages;
 import br.com.wirecard.payment.controller.util.ValidateInputData;
 import br.com.wirecard.payment.domain.*;
@@ -15,7 +11,6 @@ import io.swagger.annotations.ApiResponses;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -28,9 +23,6 @@ public class PaymentController {
     PaymentService paymentService;
 
     @Autowired
-    ModelMapper modelMapper;
-
-    @Autowired
     ValidateInputData validateInputData;
 
 
@@ -41,11 +33,10 @@ public class PaymentController {
     }
     )
     @GetMapping(PaymentEndPoint.PATH_STATUS)
-    public ResponseEntity<PaymentDTO> verifyStatusByPaymentId(@PathVariable String paymentId){
+    @ResponseStatus(HttpStatus.FOUND)
+    public Payment verifyStatusByPaymentId(@PathVariable String paymentId){
 
-        PaymentDTO dto;
         Long id = validateInputData.validadePaymentId(paymentId);
-
         Payment payment = paymentService.verifyStatusByPaymentId(id);
 
         if(payment==null) {
@@ -53,16 +44,7 @@ public class PaymentController {
                     Messages.PAYMENT_NOT_FOUND);
         }
 
-        try {
-            dto = convertEntityToDto(payment);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                    "ERRO !!!!!!!!",
-                    e);
-        }
-
-        return new ResponseEntity<>(dto, HttpStatus.OK);
-
+        return payment;
     }
 
     @ApiOperation(value = "Creates a new payment")
@@ -72,45 +54,12 @@ public class PaymentController {
     }
     )
     @PostMapping(PaymentEndPoint.PATH_PAYMENT)
-    public ResponseEntity<PaymentDTO> createPayment(@RequestBody PaymentDTO paymentDTO){
+    @ResponseStatus(HttpStatus.CREATED)
+    public Payment createPayment(@RequestBody Payment payment){
 
-        validateInputData.validatePaymentDTO(paymentDTO);
-        Payment payment = convertDtoToEntity(paymentDTO);
-        PaymentDTO dto = convertEntityToDto(paymentService.createPayment(payment));
-        return new ResponseEntity<>(dto, HttpStatus.CREATED);
+        validateInputData.validatePayment(payment);
+
+        return paymentService.createPayment(payment);
     }
-
-    private PaymentDTO convertEntityToDto(Payment payment){
-        PaymentDTO dto;
-
-        if(payment instanceof Boleto){
-            BoletoDTO boletoDTO;
-            boletoDTO = modelMapper.map(payment, BoletoDTO.class);
-            dto = boletoDTO;
-        } else if(payment instanceof CreditCard) {
-            CreditCardDTO creditCardDTO;
-            creditCardDTO = modelMapper.map(payment, CreditCardDTO.class);
-            dto = creditCardDTO;
-        } else {
-            dto = null;
-        }
-
-        return dto;
-    }
-
-   private Payment convertDtoToEntity(PaymentDTO dto){
-        Payment payment;
-
-        if(dto.getType() == PaymentType.BOLETO){
-            payment = modelMapper.map(dto, Boleto.class);
-        } else if(dto.getType() == PaymentType.CREDIT_CARD){
-            payment = modelMapper.map(dto, CreditCard.class);
-        } else {
-            return  null;
-        }
-
-        return payment;
-    }
-
 
 }
