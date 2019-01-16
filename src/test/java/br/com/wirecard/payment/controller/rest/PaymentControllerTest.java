@@ -21,6 +21,8 @@ import org.springframework.restdocs.mockmvc.RestDocumentationResultHandler;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -151,6 +153,21 @@ public class PaymentControllerTest {
 
     @Test
     public void givenPaymentId_whenVerifiedStatus_thenReturnPayment() throws Exception{
+
+        Long paymentId = 101L;
+
+        given(validateInputData.validadePaymentId(paymentId.toString())).willReturn(paymentId);
+        given (service.verifyStatusByPaymentId(paymentId)).willReturn(null);
+
+        mvc.perform(get(PaymentEndPoint.PATH_SERVICES + PaymentEndPoint.PATH_PAYMENT + "/" + paymentId + "/status")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andDo(print());
+
+    }
+
+    @Test
+    public void givenPaymentId_whenVerifiedStatus_thenReturnNull() throws Exception{
 
         Long paymentId = 101L;
         Long clientId = 2L;
