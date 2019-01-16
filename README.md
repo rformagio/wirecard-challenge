@@ -10,7 +10,7 @@ It was used *Spring Boot*.
 
 It was developed 2 rest services:
 
-#####2)  Create payments (POST)
+##### 1) Create payments (POST)
 ```
 http://localhost:8080/services/payments
 ```
@@ -66,7 +66,7 @@ This service creates payment. It can receive 2 types of *json*:
   *paymentId* is created.
   
   *status* and *barCode* are returned depending on the process of the payment.   
-##### 2 )  Status (GET)
+##### 2 ) Status (GET)
 ```
 http://localhost:8080/services/payments/{paymentId}/status
 ```
