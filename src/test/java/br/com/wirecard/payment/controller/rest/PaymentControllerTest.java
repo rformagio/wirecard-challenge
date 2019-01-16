@@ -179,7 +179,7 @@ public class PaymentControllerTest {
 
 
     }
-    
+
 
     private Buyer getBuyer(String name, String cpf, String email){
 
