@@ -109,7 +109,25 @@ The project is using *SWAGGER*, so, if the application is running, you can visit
 ```
 http://localhost:8080/swagger-ui.html
 ```
+Or
 
+you can use same *curl* examples:
+
+- Create a Credit Card Payment:
+
+```
+curl -X POST "http://localhost:8080/services/payments" -H  "accept: */*" -H  "Content-Type: application/json" -d "{    \"paymentId\": null,    \"clientId\": 1,     \"amount\": 200,     \"type\": \"CREDIT_CARD\",    \"status\": null,    \"buyer\": {        \"buyerId\": null,        \"name\": \"Antonio Carlos\",        \"email\": \"antonio@gmail.com\",        \"cpf\": \"1234567-9\"    },    \"holderName\": \"Antonio Carlos\",    \"cardNumber\": \"378282246310005\",    \"cvv\": \"4\",    \"expirationDate\": \"2021-01-15\",    \"issuer\": null}"
+```
+
+- Create a Boleto Payment:
+```
+curl -X POST "http://localhost:8080/services/payments" -H  "accept: */*" -H  "Content-Type: application/json" -d "{    \"paymentId\": null,    \"clientId\": 1,     \"amount\": 200,     \"type\": \"BOLETO\",    \"status\": null,    \"buyer\": {        \"buyerId\": null,        \"name\": \"Antonio Carlos\",        \"email\": \"antonio@gmail.com\",        \"cpf\": \"1234567-9\"    },   \"barCode\": null}"
+```
+
+- Verify status: (YOU MUST REPLACE {paymentID} )
+```
+curl -X GET "http://localhost:8080/services/payments/{paymentId}/status" -H  "accept: */*"
+```
 
 ## TO-DO
 
@@ -119,5 +137,29 @@ http://localhost:8080/swagger-ui.html
  - Bar Code generator for Boleto Payment
  - Add security
  - Add logging
+ 
+ ## PLUS: Docker
+ 
+ It´s possible run the application in simple Docker container.
+ 
+ If you have Docker installed, run the command:
+ ```
+ mvn clean install dockerfile:build
+ ```
+ 
+ This should create the image: ``rformagio/wirecard-challenge``
+ And now, to put services up and running:
+ ```
+ docker run -p 8080:8080 --name wirecard rformagio/wirecard-challenge
+ ```
+ 
+ You can test !!! The *URL*s are the same. 
+ ```
+ http://localhost:8080/swagger-ui.html
+ ```
+ 
+ That´s it !!
+ 
+ 
  
  
