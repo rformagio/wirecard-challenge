@@ -73,7 +73,7 @@ http://localhost:8080/services/payments/{paymentId}/status
 This service verify the status of a payment. It returns a payment (Boleto or Credit Card).
 It receives a *paymentId*. The paymentId can be obtained from the return of the payment service (a payment that was created previously)
 
-For developement was used:
+For development was used:
 - Spring Boot
 - Bean Validation
 - ResponseStatusException
@@ -132,11 +132,12 @@ curl -X GET "http://localhost:8080/services/payments/{paymentId}/status" -H  "ac
 ## TO-DO
 
  - Improve Bean Validation: 
-    - apply to service and dao layers
+    - apply to service and persistence layers
     - CPF validation
  - Bar Code generator for Boleto Payment
  - Add security
  - Add logging
+ - Improve tests 
  
  ## PLUS: Docker
  
