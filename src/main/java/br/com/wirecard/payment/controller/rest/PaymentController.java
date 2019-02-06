@@ -8,13 +8,14 @@ import br.com.wirecard.payment.service.PaymentService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-
+@Slf4j
 @RestController
 @RequestMapping(PaymentEndPoint.PATH_SERVICES)
 public class PaymentController {
@@ -35,11 +36,12 @@ public class PaymentController {
     @GetMapping(PaymentEndPoint.PATH_STATUS)
     @ResponseStatus(HttpStatus.FOUND)
     public Payment verifyStatusByPaymentId(@PathVariable String paymentId){
-
+        log.info("Verifying paymentId: " + paymentId);
         Long id = validateInputData.validadePaymentId(paymentId);
         Payment payment = paymentService.verifyStatusByPaymentId(id);
 
         if(payment==null) {
+            log.warn("PaymentId not found! [ " + paymentId + " ]" );
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     Messages.PAYMENT_NOT_FOUND);
         }
@@ -56,6 +58,7 @@ public class PaymentController {
     @PostMapping(PaymentEndPoint.PATH_PAYMENT)
     @ResponseStatus(HttpStatus.CREATED)
     public Payment createPayment(@RequestBody Payment payment){
+        log.info("Creating payment ! ");
 
         validateInputData.validatePayment(payment);
 

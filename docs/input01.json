@@ -1,1 +1,18 @@
-{"paymentId":1,"clientId":null,"amount":200,"type":"CREDIT_CARD","status":null,"buyer":{"buyerId":null,"name":"Antonio Carlos","email":"antonio@gmail.com","cpf":"1234567-9"},"holderName":"Antonio Carlos","cardNumber":"378282246310005","cvv":"4","expirationDate":"2019-01-15","issuer":null}
+{
+    "paymentId": 1,
+    "clientId": null,
+    "amount": 200,
+    "type": "CREDIT_CARD",
+    "status": null,
+    "buyer": {
+        "buyerId": null,
+        "name": "Antonio Carlos",
+        "email": "antonio@gmail.com",
+        "cpf": "1234567-9"
+    },
+    "holderName": "Antonio Carlos",
+    "cardNumber": "378282246310005",
+    "cvv": "4",
+    "expirationDate": "2019-01-15",
+    "issuer": null
+}

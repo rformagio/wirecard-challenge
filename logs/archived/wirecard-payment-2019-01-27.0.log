@@ -1,0 +1,36 @@
+2019-01-27 20:47:17,324 INFO o.s.b.StartupInfoLogger [main] Starting PaymentApplication on ZEUS with PID 5932 (D:\dev\home\rodrigo\projects\wirecard-challenge\target\classes started by rodrigo in D:\dev\home\rodrigo\projects\wirecard-challenge)
+2019-01-27 20:47:17,337 INFO o.s.b.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-01-27 20:47:19,397 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-01-27 20:47:19,522 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 113ms. Found 2 repository interfaces.
+2019-01-27 20:47:19,979 INFO o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [main] Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$5b5db8ff] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-01-27 20:47:20,737 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2019-01-27 20:47:20,757 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2019-01-27 20:47:20,785 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2019-01-27 20:47:20,786 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet Engine: Apache Tomcat/9.0.13
+2019-01-27 20:47:20,804 INFO o.a.j.l.DirectJDKLog [main] The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;D:\dev\usr\local\bin;D:\dev\bin;D:\dev\bin;D:\dev\opt\conemu\ConEmu\Scripts;D:\dev\opt\conemu;D:\dev\opt\conemu\ConEmu;C:\Program Files\Docker\Docker\Resources\bin;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\Users\rodri\AppData\Local\Programs\Python\Python37-32;C:\Users\rodrigo\AppData\Local\Microsoft\WindowsApps;D:\Softwares\apache-maven-3.5.4\bin;C:\Program Files\Java\jdk1.8.0_181\bin;.]
+2019-01-27 20:47:21,507 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2019-01-27 20:47:21,508 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 4112 ms
+2019-01-27 20:47:21,744 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2019-01-27 20:47:21,982 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2019-01-27 20:47:22,099 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-01-27 20:47:22,228 INFO o.h.Version [main] HHH000412: Hibernate Core {5.3.7.Final}
+2019-01-27 20:47:22,231 INFO o.h.c.Environment [main] HHH000206: hibernate.properties not found
+2019-01-27 20:47:22,494 INFO o.h.a.c.r.j.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-01-27 20:47:22,756 INFO o.h.d.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2019-01-27 20:47:23,925 INFO o.h.t.s.i.SchemaCreatorImpl [main] HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@704f2298'
+2019-01-27 20:47:23,929 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-01-27 20:47:24,788 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration$JpaWebMvcConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-01-27 20:47:24,983 INFO s.d.s.w.PropertySourcedRequestMappingHandlerMapping [main] Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity<springfox.documentation.spring.web.json.Json> springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-01-27 20:47:25,159 INFO o.s.s.c.ExecutorConfigurationSupport [main] Initializing ExecutorService 'applicationTaskExecutor'
+2019-01-27 20:47:25,455 INFO s.d.s.w.p.DocumentationPluginsBootstrapper [main] Context refreshed
+2019-01-27 20:47:25,494 INFO s.d.s.w.p.DocumentationPluginsBootstrapper [main] Found 1 custom documentation plugin(s)
+2019-01-27 20:47:25,541 INFO s.d.s.w.s.ApiListingReferenceScanner [main] Scanning for api listing references
+2019-01-27 20:47:25,752 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2019-01-27 20:47:25,773 INFO o.a.j.l.DirectJDKLog [main] Using a shared selector for servlet write/read
+2019-01-27 20:47:25,811 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2019-01-27 20:47:25,816 INFO o.s.b.StartupInfoLogger [main] Started PaymentApplication in 9.16 seconds (JVM running for 26.387)
+2019-01-27 20:47:42,742 INFO o.a.j.l.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-01-27 20:47:42,744 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2019-01-27 20:47:42,773 INFO o.s.w.s.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 28 ms
